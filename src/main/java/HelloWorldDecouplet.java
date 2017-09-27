@@ -1,7 +1,9 @@
+import java.io.*;
+
 public class HelloWorldDecouplet {
     public static void main(String[] args){
-        MessageRenderer mr = new StandartOutMessageRenderer();
-        MessageProvider mp = new HelloWorldMessageProvider();
+        MessageRenderer mr = MessageSupportFactory.getInstance().getRenderer();
+        MessageProvider mp = MessageSupportFactory.getInstance().getProvider();
         mr.setMessageProvider(mp);
         mr.render();
 

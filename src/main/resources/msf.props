@@ -1,0 +1,2 @@
+renderer.class=StandartOutMessageRenderer
+provider.class=HelloWorldMessageProvider

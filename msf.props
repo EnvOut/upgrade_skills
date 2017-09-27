@@ -1,0 +1,2 @@
+render.class=com.gipi.upgrade.skill.spring.StandartOutMessageRenderer;
+provider.class=com.gipi.upgrade.skill.spring.HelloWorldMessageProvider;
