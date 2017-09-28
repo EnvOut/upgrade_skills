@@ -5,6 +5,7 @@
       <configuration>
         <fileset id="fileset" name="Xml Bean Factory Config" removed="false">
           <file>file://$MODULE_DIR$/../../src/main/resources/META-INF/spring/xml-bean-factory-config.xml</file>
+          <file>file://$MODULE_DIR$/../../src/main/resources/META-INF/spring/app-context-annotation.xml</file>
         </fileset>
       </configuration>
     </facet>
