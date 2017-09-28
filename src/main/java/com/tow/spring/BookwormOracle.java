@@ -1,3 +1,5 @@
+package com.tow.spring;
+
 public class BookwormOracle implements Oracle {
     @Override
     public String gefineMeaningOfLife() {
