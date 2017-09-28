@@ -3,6 +3,8 @@
 # Mobile Tools for Java (J2ME)
 .mtj.tmp/
 
+.idea
+
 # Package Files #
 *.jar
 *.war
@@ -116,3 +118,4 @@ hs_err_pid*
 target/
 
 # End of https://www.gitignore.io/api/java,java-web,code-java
+src/test/
