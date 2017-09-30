@@ -6,15 +6,15 @@ import org.springframework.stereotype.Service;
 
 @Service("injectSimple")
 public class InjectSimple {
-    @Value("Sergey")
+    @Value("#{injectSimpleAnnotation.name}")
     private String name;
-    @Value("15")
+    @Value("#{injectSimpleAnnotation.age}")
     private int age;
-    @Value("1.763")
+    @Value("#{injectSimpleAnnotation.height}")
     private float height;
-    @Value("true")
+    @Value("#{injectSimpleAnnotation.programmer}")
     private boolean programmer;
-    @Value("10432432")
+    @Value("#{injectSimpleAnnotation.ageInSeconds}")
     private Long ageInSeconds;
 
     public static void main(String[] args) {
