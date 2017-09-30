@@ -5,10 +5,5 @@
        xmlns:c="http://www.springframework.org/schema/c"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd"
 >
-    <bean id="messageProvider" class="com.tow.spring.xml.HelloWorldMessageProvider" p:message="Сука бля!" c:strings="Конструктор сука">
-        <!--<constructor-arg name="strings" value="Spring super!"/>-->
-    </bean>
-    <bean id="messageRenderer" class="com.tow.spring.xml.StandardOutMessageReaderer">
-        <property name="messageProvider" ref="messageProvider"/>
-    </bean>
+    <bean id="injectSimple" class="com.tow.spring.xml.InjectSimple" p:age="15" p:height="1.763" p:name="Sergey" p:programmer="true" p:ageInSeconds="10432432" />
 </beans>
