@@ -4,6 +4,7 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd"
 >
     <bean id="oracle" class="com.tow.spring.xml.BookwormOracle"/>
+    <bean id="oracle" class="com.tow.spring.BookwormOracle"/>
     <bean id="collectionInjection" class="com.tow.spring.xml.CollectionInjection">
         <property name="mapFiled">
             <map>
