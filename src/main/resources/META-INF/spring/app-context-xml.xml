@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
-       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd"
 >
-    <bean id="helper" class="com.tow.spring.xml.MyHelper" scope="prototype"/>
-
-    <bean id="abstractLookupBean" class="com.tow.spring.xml.AbstractLookupDemoBean">
-        <lookup-method name="getMyHelper" bean="helper"/>
+    <bean id="methodReplacer" class="com.tow.spring.xml.FormatMessageReplacer"/>
+    <bean id="replacementTarget" class="com.tow.spring.xml.ReplacementTarget">
+        <replaced-method name="formatMessage" replacer="methodReplacer">
+            <arg-type>String</arg-type>
+        </replaced-method>
     </bean>
 
-    <bean id="standartLookupBean" class="com.tow.spring.xml.StandartLookupDemoBean" p:myHelper-ref="helper"/>
-
+    <bean id="standartTarget" class="com.tow.spring.xml.ReplacementTarget"/>
 </beans>
