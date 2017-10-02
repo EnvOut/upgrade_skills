@@ -1,12 +1,13 @@
 package com.tow.spring.xml;
 
 import org.springframework.beans.factory.BeanCreationException;
+import org.springframework.beans.factory.InitializingBean;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.GenericXmlApplicationContext;
 
 import static java.lang.System.out;
 
-public class SimpleBean {
+public class SimpleBean implements InitializingBean {
     public static String DEFAULT_NAME = "Luke Skywalker";
 
     private String name;
@@ -35,17 +36,6 @@ public class SimpleBean {
         return bean;
     }
 
-    public void init() {
-        out.println("Initializing bean");
-        if (name == null) {
-            out.println("Using default name");
-            name = DEFAULT_NAME;
-        }
-        if (age == Integer.MIN_VALUE || age == Integer.MAX_VALUE) {
-            throw new IllegalArgumentException("set normal value");
-        }
-    }
-
     public void setName(String name) {
         this.name = name;
     }
@@ -60,5 +50,17 @@ public class SimpleBean {
                 "name='" + name + '\'' +
                 ", age=" + age +
                 '}';
+    }
+
+    @Override
+    public void afterPropertiesSet() throws Exception {
+        out.println("Initializing bean");
+        if (name == null) {
+            out.println("Using default name");
+            name = DEFAULT_NAME;
+        }
+        if (age == Integer.MIN_VALUE || age == Integer.MAX_VALUE) {
+            throw new IllegalArgumentException("set normal value");
+        }
     }
 }
