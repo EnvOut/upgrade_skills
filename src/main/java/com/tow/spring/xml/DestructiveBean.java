@@ -1,14 +1,14 @@
 package com.tow.spring.xml;
 
-import org.springframework.beans.factory.DisposableBean;
 import org.springframework.context.support.GenericXmlApplicationContext;
 
 import javax.annotation.PostConstruct;
+import javax.annotation.PreDestroy;
 import java.io.File;
 
 import static java.lang.System.out;
 
-public class DestructiveBean implements DisposableBean {
+public class DestructiveBean {
     private File file;
     private String filePath;
 
@@ -39,7 +39,7 @@ public class DestructiveBean implements DisposableBean {
         out.println("File created! " + file.getAbsolutePath());
     }
 
-    @Override
+    @PreDestroy
     public void destroy() {
         out.println("Destroy bean");
 
