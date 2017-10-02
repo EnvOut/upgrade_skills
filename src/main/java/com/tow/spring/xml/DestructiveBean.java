@@ -15,11 +15,11 @@ public class DestructiveBean {
     public static void main(String[] args) {
         GenericXmlApplicationContext ctx = new GenericXmlApplicationContext();
         ctx.load("classpath:META-INF/spring/app-context-xml.xml");
+        ctx.registerShutdownHook();
         ctx.refresh();
 
         DestructiveBean bean = ctx.getBean("destructiveBean", DestructiveBean.class);
         out.println("Calling destroy");
-        ctx.destroy();
         out.println("Called destroy");
     }
 
