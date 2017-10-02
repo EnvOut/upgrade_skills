@@ -1,13 +1,14 @@
 package com.tow.spring.xml;
 
 import org.springframework.beans.factory.BeanCreationException;
-import org.springframework.beans.factory.InitializingBean;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.GenericXmlApplicationContext;
 
+import javax.annotation.PostConstruct;
+
 import static java.lang.System.out;
 
-public class SimpleBean implements InitializingBean {
+public class SimpleBean {
     public static String DEFAULT_NAME = "Luke Skywalker";
 
     private String name;
@@ -52,8 +53,8 @@ public class SimpleBean implements InitializingBean {
                 '}';
     }
 
-    @Override
-    public void afterPropertiesSet() throws Exception {
+    @PostConstruct
+    public void init() throws Exception {
         out.println("Initializing bean");
         if (name == null) {
             out.println("Using default name");
