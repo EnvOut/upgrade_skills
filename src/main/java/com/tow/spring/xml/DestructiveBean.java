@@ -1,5 +1,6 @@
 package com.tow.spring.xml;
 
+import org.springframework.beans.factory.DisposableBean;
 import org.springframework.context.support.GenericXmlApplicationContext;
 
 import javax.annotation.PostConstruct;
@@ -7,7 +8,7 @@ import java.io.File;
 
 import static java.lang.System.out;
 
-public class DestructiveBean {
+public class DestructiveBean implements DisposableBean {
     private File file;
     private String filePath;
 
@@ -18,7 +19,7 @@ public class DestructiveBean {
 
         DestructiveBean bean = ctx.getBean("destructiveBean", DestructiveBean.class);
         out.println("Calling destroy");
-//        ctx.destroy();
+        ctx.destroy();
         out.println("Called destroy");
     }
 
@@ -35,9 +36,10 @@ public class DestructiveBean {
         this.file = new File(filePath);
         this.file.createNewFile();
 
-        out.println("File created! "+file.getAbsolutePath());
+        out.println("File created! " + file.getAbsolutePath());
     }
 
+    @Override
     public void destroy() {
         out.println("Destroy bean");
 

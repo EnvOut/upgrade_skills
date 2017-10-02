@@ -5,6 +5,6 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd"
 >
     <context:annotation-config/>
-    <bean id="destructiveBean" class="com.tow.spring.xml.DestructiveBean" destroy-method="destroy" init-method="init"
+    <bean id="destructiveBean" class="com.tow.spring.xml.DestructiveBean" init-method="init"
           p:filePath="#{systemProperties['java.io.tmpdir']}#{systemProperties['file.separator']}test,txt"/>
 </beans>
