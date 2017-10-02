@@ -5,7 +5,6 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd"
 >
     <context:annotation-config/>
-    <bean id="simpleBean1" class="com.tow.spring.xml.SimpleBean" p:name="Sergey Vishnevsky" p:age="30"/>
-    <bean id="simpleBean2" class="com.tow.spring.xml.SimpleBean" p:age="30"/>
-    <bean id="simpleBean3" class="com.tow.spring.xml.SimpleBean" p:name="Sergey Vishnevsky"/>
+    <bean id="destructiveBean" class="com.tow.spring.xml.DestructiveBean" destroy-method="destroy" init-method="init"
+          p:filePath="#{systemProperties['java.io.tmpdir']}#{systemProperties['file.separator']}test,txt"/>
 </beans>
