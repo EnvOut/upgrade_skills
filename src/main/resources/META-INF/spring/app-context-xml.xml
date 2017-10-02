@@ -3,12 +3,12 @@
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd"
 >
-    <bean id="methodReplacer" class="com.tow.spring.xml.FormatMessageReplacer"/>
-    <bean id="replacementTarget" class="com.tow.spring.xml.ReplacementTarget">
-        <replaced-method name="formatMessage" replacer="methodReplacer">
-            <arg-type>String</arg-type>
-        </replaced-method>
-    </bean>
-
-    <bean id="standartTarget" class="com.tow.spring.xml.ReplacementTarget"/>
+    <bean id="foo" class="com.tow.spring.xml.Foo"/>
+    <bean id="bar1" class="com.tow.spring.xml.Bar"/>
+    <!--Связать по название поля - бина-->
+    <bean id="targetByName" autowire="byName" class="com.tow.spring.xml.Target" lazy-init="true"/>
+    <!--Связать по типу поля - бина-->
+    <bean id="targetByType" autowire="byType" class="com.tow.spring.xml.Target" lazy-init="true"/>
+    <!--Связать по типу конструктора - бинов-->
+    <bean id="targetByConstructor" autowire="constructor" class="com.tow.spring.xml.Target" lazy-init="true"/>
 </beans>
