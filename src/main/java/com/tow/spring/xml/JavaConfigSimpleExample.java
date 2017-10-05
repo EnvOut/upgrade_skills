@@ -1,11 +1,11 @@
 package com.tow.spring.xml;
 
 import org.springframework.context.ApplicationContext;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
-public class JavaConfigXMLExample {
+public class JavaConfigSimpleExample {
     public static void main(String[] args) {
-        ApplicationContext ctx = new ClassPathXmlApplicationContext("classpath:META-INF/spring/app-context-xml.xml");
+        ApplicationContext ctx = new AnnotationConfigApplicationContext(AppConfig.class);
         MessageRenderer messageRenderer = ctx.getBean("messageRenderer", MessageRenderer.class);
         messageRenderer.render();
     }
