@@ -1,6 +1,5 @@
 package com.tow.spring.aop;
 
-
 import org.aopalliance.intercept.MethodInterceptor;
 import org.aopalliance.intercept.MethodInvocation;
 
@@ -15,4 +14,4 @@ public class SimpleAdvice implements MethodInterceptor {
         out.println(">> Done");
         return retVal;
     }
-}
+} 
