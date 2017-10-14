@@ -26,5 +26,7 @@ dependencies {
     compile group: 'org.aspectj', name: 'aspectjtools', version: '1.8.11'
 // https://mvnrepository.com/artifact/org.aspectj/aspectjrt
     compile group: 'org.aspectj', name: 'aspectjrt', version: '1.8.11'
+// https://mvnrepository.com/artifact/org.postgresql/postgresql
+    compile group: 'org.postgresql', name: 'postgresql', version: '42.1.4'
 
 }
