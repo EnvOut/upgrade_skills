@@ -59,7 +59,14 @@ public class PlainContactDao implements ContactDAO {
     public List<Contact> findAll() {
         return jdbcTemplate.query(
                 "select id, first_name, last_name, birth_date from contact",
-                new ContactMapper());
+                (rs, rowNum) -> {
+                    Contact contact = new Contact();
+                    contact.setId(rs.getLong("id"))
+                            .setFirstName(rs.getString("first_name"))
+                            .setLastName(rs.getString("last_name"))
+                            .setBirthDate(rs.getDate("birth_date"));
+                    return contact;
+                });
     }
 
     @Override
