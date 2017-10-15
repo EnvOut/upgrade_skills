@@ -3,13 +3,13 @@ package com.tow.spring.jdbc.dao;
 import com.tow.spring.jdbc.models.Contact;
 import org.springframework.beans.factory.BeanCreationException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
 import javax.sql.DataSource;
 import java.sql.*;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -57,30 +57,9 @@ public class PlainContactDao implements ContactDAO {
 
     @Override
     public List<Contact> findAll() {
-        List<Contact> result = new ArrayList<Contact>();
-        Connection connection = null;
-
-        try {
-            connection = getConnection();
-            PreparedStatement statement = connection.prepareStatement(
-                    "SELECT * FROM contact");
-            ResultSet resultSet = statement.executeQuery();
-
-            while (resultSet.next()) {
-                Contact contact = new Contact();
-                contact.setId(resultSet.getLong("id"));
-                contact.setFirstName(resultSet.getString("first_name"));
-                contact.setLastName(resultSet.getString("last_name"));
-                contact.setBirthDate(resultSet.getDate("birth_date"));
-
-                result.add(contact);
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        } finally {
-            closeConnection(connection);
-        }
-        return result;
+        return jdbcTemplate.query(
+                "select id, first_name, last_name, birth_date from contact",
+                new ContactMapper());
     }
 
     @Override
@@ -154,6 +133,19 @@ public class PlainContactDao implements ContactDAO {
             e.printStackTrace();
         } finally {
             closeConnection(connection);
+        }
+    }
+
+    private static final class ContactMapper implements RowMapper<Contact> {
+
+        @Override
+        public Contact mapRow(ResultSet rs, int rowNum) throws SQLException {
+            Contact contact = new Contact();
+            contact.setId(rs.getLong("id"))
+                    .setFirstName(rs.getString("first_name"))
+                    .setLastName(rs.getString("last_name"))
+                    .setBirthDate(rs.getDate("birth_date"));
+            return contact;
         }
     }
 }
