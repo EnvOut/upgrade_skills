@@ -3,14 +3,16 @@ package com.tow.spring.jdbc.dao;
 import com.tow.spring.jdbc.models.Contact;
 import org.springframework.beans.factory.BeanCreationException;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
 import javax.sql.DataSource;
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Component
 public class PlainContactDao implements ContactDAO {
@@ -26,7 +28,7 @@ public class PlainContactDao implements ContactDAO {
     private DataSource source;
 
     @Autowired
-    private JdbcTemplate jdbcTemplate;
+    private NamedParameterJdbcTemplate jdbcTemplate;
 
     @PostConstruct
     private void init() {
@@ -88,9 +90,14 @@ public class PlainContactDao implements ContactDAO {
 
     @Override
     public String findLastNameById(Long id) {
+        String sql = "SELECT first_name FROM contact WHERE id = :contactId";
+
+        Map<String, Object> namedParameters = new HashMap<String, Object>();
+        namedParameters.put("contactId", id);
+
         return jdbcTemplate.queryForObject(
-                "SELECT first_name FROM contact WHERE id = ?",
-                new Object[]{id},
+                sql,
+                namedParameters,
                 String.class);
     }
 
