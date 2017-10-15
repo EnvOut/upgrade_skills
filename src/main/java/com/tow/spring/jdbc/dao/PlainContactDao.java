@@ -1,17 +1,37 @@
 package com.tow.spring.jdbc.dao;
 
 import com.tow.spring.jdbc.models.Contact;
+import org.springframework.beans.factory.BeanCreationException;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.stereotype.Component;
 
+import javax.annotation.PostConstruct;
+import javax.sql.DataSource;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
+@Component
 public class PlainContactDao implements ContactDAO {
     static {
         try {
             Class.forName("org.postgresql.Driver");
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
+        }
+    }
+
+    @Autowired
+    private DataSource source;
+
+    @Autowired
+    private JdbcTemplate jdbcTemplate;
+
+    @PostConstruct
+    private void init() {
+        if (source == null) {
+            throw new BeanCreationException("Must set dataSource on ContactDao");
         }
     }
 
@@ -68,7 +88,10 @@ public class PlainContactDao implements ContactDAO {
 
     @Override
     public String findLastNameById(Long id) {
-        return null;
+        return jdbcTemplate.queryForObject(
+                "SELECT first_name FROM contact WHERE id = ?",
+                new Object[]{id},
+                String.class);
     }
 
     @Override
