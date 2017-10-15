@@ -1,20 +1,22 @@
 package com.tow.spring.jdbc.dao;
 
 import com.tow.spring.jdbc.models.Contact;
+import com.tow.spring.jdbc.models.ContactTelDetail;
 import org.springframework.beans.factory.BeanCreationException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Repository;
 
 import javax.annotation.PostConstruct;
 import javax.sql.DataSource;
 import java.sql.*;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-@Component
+@Repository("contactDao")
 public class PlainContactDao implements ContactDAO {
     static {
         try {
@@ -66,6 +68,47 @@ public class PlainContactDao implements ContactDAO {
                             .setLastName(rs.getString("last_name"))
                             .setBirthDate(rs.getDate("birth_date"));
                     return contact;
+                });
+    }
+
+    @Override
+    public List<Contact> findAllWhithDetail() {
+        return jdbcTemplate.query("" +
+                        "SELECT c.id, c.first_name, c.last_name, c.birth_date, t.id " +
+                        "AS contact_tel_id, t.tel_type, t.tel_number " +
+                        "FROM contact c " +
+                        "LEFT JOIN contact_tel_detail t " +
+                        "ON c.id = t.contact_id",
+                (ResultSet rs) -> {
+                    Map<Long, Contact> map = new HashMap<>();
+
+                    Contact contact = null;
+
+                    while (rs.next()) {
+                        Long id = rs.getLong("id");
+                        contact = map.get(id);
+
+                        if (contact == null) {
+                            contact = new Contact().setId(id);
+                            contact.setId(rs.getLong("id"))
+                                    .setFirstName(rs.getString("first_name"))
+                                    .setLastName(rs.getString("last_name"))
+                                    .setBirthDate(rs.getDate("birth_date"))
+                                    .setContactTelDetail(new ArrayList<ContactTelDetail>());
+                            map.put(id, contact);
+                        }
+
+                        Long contactTelDetailId = rs.getLong("contact_tel_id");
+                        if (contactTelDetailId > 0) {
+                            ContactTelDetail contactTelDetail = new ContactTelDetail();
+                            contactTelDetail.setId(contactTelDetailId);
+                            contactTelDetail.setContactId(id);
+                            contactTelDetail.setTelType(rs.getString("tel_number"));
+                            contact.getContactTelDetail().add(contactTelDetail);
+                        }
+                    }
+
+                    return new ArrayList<>(map.values());
                 });
     }
 

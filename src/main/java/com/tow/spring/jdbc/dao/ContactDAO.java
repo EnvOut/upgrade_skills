@@ -6,6 +6,7 @@ import java.util.List;
 
 public interface ContactDAO {
     List<Contact> findAll();
+    List<Contact> findAllWhithDetail();
     List<Contact> findByFirstName(String firstName);
     String findLastNameById(Long id);
     String findFirstNameById(Long id);
