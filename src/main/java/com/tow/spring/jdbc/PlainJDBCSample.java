@@ -12,5 +12,7 @@ public class PlainJDBCSample {
         ContactDAO jdbcDao = ctx.getBean(PlainContactDao.class);
 
         jdbcDao.findAll().parallelStream().forEach(System.out::println);
+
+        jdbcDao.findByFirstName("Chris").parallelStream().forEach(System.out::println);
     }
 }

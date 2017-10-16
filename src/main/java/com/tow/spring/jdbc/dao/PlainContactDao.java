@@ -1,6 +1,7 @@
 package com.tow.spring.jdbc.dao;
 
 import com.tow.spring.jdbc.etc.SelectAllContacts;
+import com.tow.spring.jdbc.etc.SelectContactByFirstName;
 import com.tow.spring.jdbc.models.Contact;
 import com.tow.spring.jdbc.models.ContactTelDetail;
 import org.springframework.beans.factory.BeanCreationException;
@@ -26,6 +27,9 @@ public class PlainContactDao implements ContactDAO {
             e.printStackTrace();
         }
     }
+
+    @Autowired
+    private SelectContactByFirstName selectContactByFirstName;
 
     @Autowired
     private DataSource source;
@@ -110,7 +114,9 @@ public class PlainContactDao implements ContactDAO {
 
     @Override
     public List<Contact> findByFirstName(String firstName) {
-        return null;
+        Map<String, Object> paramMap = new HashMap<>();
+        paramMap.put("first_name", firstName);
+        return selectContactByFirstName.executeByNamedParam(paramMap);
     }
 
     @Override
