@@ -2,6 +2,7 @@ package com.tow.spring.jdbc.dao;
 
 import com.tow.spring.jdbc.etc.SelectAllContacts;
 import com.tow.spring.jdbc.etc.SelectContactByFirstName;
+import com.tow.spring.jdbc.etc.UpdateContact;
 import com.tow.spring.jdbc.models.Contact;
 import com.tow.spring.jdbc.models.ContactTelDetail;
 import org.springframework.beans.factory.BeanCreationException;
@@ -17,9 +18,12 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.logging.Logger;
 
 @Repository("contactDao")
 public class PlainContactDao implements ContactDAO {
+    private static final Logger LOG = Logger.getLogger(PlainContactDao.class.getName());
+
     static {
         try {
             Class.forName("org.postgresql.Driver");
@@ -39,6 +43,9 @@ public class PlainContactDao implements ContactDAO {
 
     @Autowired
     private NamedParameterJdbcTemplate jdbcTemplate;
+
+    @Autowired
+    private UpdateContact updateContact;
 
     @PostConstruct
     private void init() {
@@ -166,7 +173,15 @@ public class PlainContactDao implements ContactDAO {
 
     @Override
     public void update(Contact contact) {
+        Map<String, Object> paramMap = new HashMap<>();
+        paramMap.put("first_name", contact.getFirstName());
+        paramMap.put("last_name", contact.getLastName());
+        paramMap.put("birth_date", contact.getBirthDate());
+        paramMap.put("id", contact.getId());
 
+        updateContact.updateByNamedParam(paramMap);
+
+        LOG.info("Exiisting contact updated with id: " + contact.getId());
     }
 
     @Override

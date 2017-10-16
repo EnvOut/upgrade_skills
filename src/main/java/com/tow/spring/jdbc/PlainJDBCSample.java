@@ -13,6 +13,10 @@ public class PlainJDBCSample {
 
         jdbcDao.findAll().parallelStream().forEach(System.out::println);
 
-        jdbcDao.findByFirstName("Chris").parallelStream().forEach(System.out::println);
+        jdbcDao.findAll().parallelStream().forEach(contact -> {
+            contact.setLastName(contact.getLastName()+"1");
+            jdbcDao.update(contact);
+        });
+        jdbcDao.findAll().parallelStream().forEach(System.out::println);
     }
 }

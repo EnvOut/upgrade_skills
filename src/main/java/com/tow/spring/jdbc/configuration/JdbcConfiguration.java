@@ -2,6 +2,7 @@ package com.tow.spring.jdbc.configuration;
 
 import com.tow.spring.jdbc.etc.SelectAllContacts;
 import com.tow.spring.jdbc.etc.SelectContactByFirstName;
+import com.tow.spring.jdbc.etc.UpdateContact;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
@@ -47,8 +48,14 @@ public class JdbcConfiguration {
     public SelectAllContacts getSelectAllContacts(@Qualifier("datasource") DataSource dataSource) {
         return new SelectAllContacts(dataSource);
     }
+
     @Bean("selectContactByFirstName")
     public SelectContactByFirstName getSelectContactByFirstName(@Qualifier("datasource") DataSource dataSource) {
         return new SelectContactByFirstName(dataSource);
+    }
+
+    @Bean("updateContact")
+    public UpdateContact getUpdateContact(@Qualifier("datasource") DataSource dataSource) {
+        return new UpdateContact(dataSource);
     }
 }
