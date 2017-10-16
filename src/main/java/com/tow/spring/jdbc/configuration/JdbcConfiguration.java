@@ -1,5 +1,6 @@
 package com.tow.spring.jdbc.configuration;
 
+import com.tow.spring.jdbc.etc.SelectAllContacts;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
@@ -9,6 +10,8 @@ import org.springframework.context.annotation.PropertySource;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
+
+import javax.sql.DataSource;
 
 @Configuration
 @ComponentScan(basePackages = "com.tow.spring.jdbc")
@@ -37,5 +40,10 @@ public class JdbcConfiguration {
     @Bean("namedJdbcTemplate")
     public NamedParameterJdbcTemplate getNamedParameterJdbcTemplate(@Qualifier("datasource") DriverManagerDataSource dataSource) {
         return new NamedParameterJdbcTemplate(dataSource);
+    }
+
+    @Bean("selectAllContacts")
+    public SelectAllContacts getSelectAllContacts(@Qualifier("datasource") DataSource dataSource) {
+        return new SelectAllContacts(dataSource);
     }
 }

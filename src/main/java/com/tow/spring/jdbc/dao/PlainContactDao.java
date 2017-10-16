@@ -1,5 +1,6 @@
 package com.tow.spring.jdbc.dao;
 
+import com.tow.spring.jdbc.etc.SelectAllContacts;
 import com.tow.spring.jdbc.models.Contact;
 import com.tow.spring.jdbc.models.ContactTelDetail;
 import org.springframework.beans.factory.BeanCreationException;
@@ -30,6 +31,9 @@ public class PlainContactDao implements ContactDAO {
     private DataSource source;
 
     @Autowired
+    private SelectAllContacts selectAllContacts;
+
+    @Autowired
     private NamedParameterJdbcTemplate jdbcTemplate;
 
     @PostConstruct
@@ -37,6 +41,7 @@ public class PlainContactDao implements ContactDAO {
         if (source == null) {
             throw new BeanCreationException("Must set dataSource on ContactDao");
         }
+
     }
 
     private Connection getConnection() throws SQLException {
@@ -59,16 +64,7 @@ public class PlainContactDao implements ContactDAO {
 
     @Override
     public List<Contact> findAll() {
-        return jdbcTemplate.query(
-                "select id, first_name, last_name, birth_date from contact",
-                (rs, rowNum) -> {
-                    Contact contact = new Contact();
-                    contact.setId(rs.getLong("id"))
-                            .setFirstName(rs.getString("first_name"))
-                            .setLastName(rs.getString("last_name"))
-                            .setBirthDate(rs.getDate("birth_date"));
-                    return contact;
-                });
+        return selectAllContacts.execute();
     }
 
     @Override

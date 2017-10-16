@@ -11,6 +11,6 @@ public class PlainJDBCSample {
         ApplicationContext ctx = new AnnotationConfigApplicationContext(JdbcConfiguration.class);
         ContactDAO jdbcDao = ctx.getBean(PlainContactDao.class);
 
-        jdbcDao.findAllWhithDetail().parallelStream().forEach(System.out::println);
+        jdbcDao.findAll().parallelStream().forEach(System.out::println);
     }
 }
