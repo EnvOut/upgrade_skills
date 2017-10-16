@@ -1,5 +1,6 @@
 package com.tow.spring.jdbc.configuration;
 
+import com.tow.spring.jdbc.etc.InsertContact;
 import com.tow.spring.jdbc.etc.SelectAllContacts;
 import com.tow.spring.jdbc.etc.SelectContactByFirstName;
 import com.tow.spring.jdbc.etc.UpdateContact;
@@ -57,5 +58,10 @@ public class JdbcConfiguration {
     @Bean("updateContact")
     public UpdateContact getUpdateContact(@Qualifier("datasource") DataSource dataSource) {
         return new UpdateContact(dataSource);
+    }
+
+    @Bean("indertContact")
+    public InsertContact getInsertContact(@Qualifier("datasource") DataSource dataSource) {
+        return new InsertContact(dataSource);
     }
 }

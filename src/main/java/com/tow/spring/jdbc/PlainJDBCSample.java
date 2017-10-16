@@ -3,6 +3,7 @@ package com.tow.spring.jdbc;
 import com.tow.spring.jdbc.configuration.JdbcConfiguration;
 import com.tow.spring.jdbc.dao.ContactDAO;
 import com.tow.spring.jdbc.dao.PlainContactDao;
+import com.tow.spring.jdbc.models.Contact;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
@@ -13,10 +14,11 @@ public class PlainJDBCSample {
 
         jdbcDao.findAll().parallelStream().forEach(System.out::println);
 
-        jdbcDao.findAll().parallelStream().forEach(contact -> {
-            contact.setLastName(contact.getLastName()+"1");
-            jdbcDao.update(contact);
-        });
+        Contact contact = jdbcDao.findAll().parallelStream().findFirst().get();
+        contact.setLastName("Copy!");
+        contact.setId(null);
+
+        jdbcDao.insert(contact);
         jdbcDao.findAll().parallelStream().forEach(System.out::println);
     }
 }

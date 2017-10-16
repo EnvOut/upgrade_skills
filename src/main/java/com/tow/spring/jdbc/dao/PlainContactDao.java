@@ -1,5 +1,6 @@
 package com.tow.spring.jdbc.dao;
 
+import com.tow.spring.jdbc.etc.InsertContact;
 import com.tow.spring.jdbc.etc.SelectAllContacts;
 import com.tow.spring.jdbc.etc.SelectContactByFirstName;
 import com.tow.spring.jdbc.etc.UpdateContact;
@@ -9,6 +10,8 @@ import org.springframework.beans.factory.BeanCreationException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
+import org.springframework.jdbc.support.GeneratedKeyHolder;
+import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Repository;
 
 import javax.annotation.PostConstruct;
@@ -37,6 +40,9 @@ public class PlainContactDao implements ContactDAO {
 
     @Autowired
     private DataSource source;
+
+    @Autowired
+    private InsertContact insertContact;
 
     @Autowired
     private SelectAllContacts selectAllContacts;
@@ -146,29 +152,17 @@ public class PlainContactDao implements ContactDAO {
 
     @Override
     public void insert(Contact contact) {
-        Connection connection = null;
-        try {
-            connection = getConnection();
-            PreparedStatement statement = connection.prepareStatement(
-                    "INSERT INTO contact " +
-                            "(first_name, last_name, birth_date) " +
-                            "VALUES (?, ?, ?)",
-                    Statement.RETURN_GENERATED_KEYS);
-            statement.setString(1, contact.getFirstName());
-            statement.setString(2, contact.getLastName());
-            statement.setDate(3, contact.getBirthDate());
+        Map<String, Object> paramMap = new HashMap<>();
+        paramMap.put("first_name", contact.getFirstName());
+        paramMap.put("last_name", contact.getLastName());
+        paramMap.put("birth_date", contact.getBirthDate());
 
-            statement.execute();
-            ResultSet generatedKeys = statement.getGeneratedKeys();
+        KeyHolder keyHolder = new GeneratedKeyHolder();
+        insertContact.updateByNamedParam(paramMap, keyHolder);
 
-            if (generatedKeys.next()) {
-                contact.setId(generatedKeys.getLong(1));
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        } finally {
-            closeConnection(connection);
-        }
+        contact.setId(keyHolder.getKey().longValue());
+
+        LOG.info("New contact inserted with id: " + contact.getId());
     }
 
     @Override
