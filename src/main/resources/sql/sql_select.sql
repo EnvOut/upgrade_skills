@@ -1,0 +1,1 @@
+SELECT getFirstNameById(1)

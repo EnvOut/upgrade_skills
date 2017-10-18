@@ -1,9 +1,6 @@
 package com.tow.spring.jdbc.dao;
 
-import com.tow.spring.jdbc.etc.InsertContact;
-import com.tow.spring.jdbc.etc.SelectAllContacts;
-import com.tow.spring.jdbc.etc.SelectContactByFirstName;
-import com.tow.spring.jdbc.etc.UpdateContact;
+import com.tow.spring.jdbc.etc.*;
 import com.tow.spring.jdbc.models.Contact;
 import com.tow.spring.jdbc.models.ContactTelDetail;
 import org.springframework.beans.factory.BeanCreationException;
@@ -34,6 +31,9 @@ public class PlainContactDao implements ContactDAO {
             e.printStackTrace();
         }
     }
+
+    @Autowired
+    private StoredFunctionFirstNameById storedFunctionFirstNameById;
 
     @Autowired
     private SelectContactByFirstName selectContactByFirstName;
@@ -147,7 +147,8 @@ public class PlainContactDao implements ContactDAO {
 
     @Override
     public String findFirstNameById(Long id) {
-        return null;
+        List<String> result = storedFunctionFirstNameById.execute(id);
+        return result.get(0);
     }
 
     @Override
