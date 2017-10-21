@@ -1,0 +1,3 @@
+[submodule "sh_util"]
+	path = sh_util
+	url = https://github.com/EnvOut/sh_util.git
