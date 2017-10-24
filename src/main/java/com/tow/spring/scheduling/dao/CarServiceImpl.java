@@ -1,17 +1,18 @@
-package com.tow.spring.schedling.dao;
+package com.tow.spring.scheduling.dao;
 
 import com.google.common.collect.Lists;
-import com.tow.spring.schedling.models.Car;
-import com.tow.spring.schedling.models.CarRepository;
+import com.tow.spring.scheduling.models.Car;
+import com.tow.spring.scheduling.models.CarRepository;
 import org.joda.time.DateTime;
 import org.joda.time.Years;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 
-import javax.transaction.Transactional;
+import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 
 @Service("carService")
@@ -24,6 +25,7 @@ public class CarServiceImpl implements CarService {
     private CarRepository carRepository;
 
     @Override
+    @Transactional(readOnly = true)
     public List<Car> findAll() {
         return Lists.newArrayList(carRepository.findAll());
     }
@@ -34,10 +36,16 @@ public class CarServiceImpl implements CarService {
     }
 
     @Override
+    @Scheduled(cron = "*/10 * * * * *")
     public void updateCarAgeJob() {
+        System.out.println("!!!!!!!!!!!!");
         List<Car> cars = findAll();
+        System.out.println(cars);
+
+        System.out.println("Lol");
 
         DateTime currentDate = DateTime.now();
+        System.out.println(currentDate);
         LOGGER.info("Car age update job started");
 
         for (Car car : cars) {

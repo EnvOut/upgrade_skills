@@ -1,6 +1,6 @@
-package com.tow.spring.schedling.dao;
+package com.tow.spring.scheduling.dao;
 
-import com.tow.spring.schedling.models.Car;
+import com.tow.spring.scheduling.models.Car;
 
 import java.util.List;
 

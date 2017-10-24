@@ -1,4 +1,4 @@
-package com.tow.spring.schedling.models;
+package com.tow.spring.scheduling.models;
 
 import org.joda.time.DateTime;
 
