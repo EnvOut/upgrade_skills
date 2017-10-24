@@ -4,6 +4,9 @@
 .mtj.tmp/
 
 .idea/
+.gradle
+gradle
+build/
 
 # Package Files #
 *.jar
@@ -118,3 +121,4 @@ hs_err_pid*
 target/
 
 # End of https://www.gitignore.io/api/java,java-web,code-java
+*.bin
