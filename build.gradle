@@ -1,7 +1,7 @@
 group 'com.gipi.upgrade.skill'
-version '1.0-SNAPSHOT'
 
 apply plugin: 'java'
+apply plugin: 'war'
 
 sourceCompatibility = 1.8
 
@@ -51,5 +51,7 @@ dependencies {
     compile group: 'org.springframework.security', name: 'spring-security-config', version: '4.2.3.RELEASE'
 // https://mvnrepository.com/artifact/org.apache.httpcomponents/httpclient
     compile group: 'org.apache.httpcomponents', name: 'httpclient', version: '4.5.3'
+// https://mvnrepository.com/artifact/com.h2database/h2
+    testCompile group: 'com.h2database', name: 'h2', version: '1.4.196'
 
 }
