@@ -40,4 +40,28 @@ dependencies {
     // SLF4J
     compile group: 'org.slf4j', name: 'slf4j-api', version: '1.7.25'
 
+
+    // OXM: VIEW XML
+    compile group: 'org.springframework', name: 'spring-oxm', version: '4.3.12.RELEASE'
+
+    // Jackson: JSON
+    compile group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: '2.9.2'
+
+    // Castor: marshaling and demarshaling XML
+    compile group: 'org.codehaus.castor', name: 'castor-xml', version: '1.4.1'
+
+    // Spring Security
+    compile group: 'org.springframework.security', name: 'spring-security-core', version: '4.2.3.RELEASE'
+    compile group: 'org.springframework.security', name: 'spring-security-web', version: '4.2.3.RELEASE'
+    compile group: 'org.springframework.security', name: 'spring-security-config', version: '4.2.3.RELEASE'
+
+    // apache commons http client
+    // https://mvnrepository.com/artifact/org.apache.httpcomponents/httpclient
+    compile group: 'org.apache.httpcomponents', name: 'httpclient', version: '4.5.3'
+
+    // Hibernate
+    compile group: 'org.hibernate', name: 'hibernate-core', version: '5.2.12.Final'
+    compile group: 'org.springframework', name: 'spring-orm', version: '4.3.12.RELEASE'
+
+    compile 'pl.allegro.finance:tradukisto:1.0.0'
 }
