@@ -15,22 +15,24 @@
         http://www.springframework.org/schema/data/jpa/spring-jpa.xsd
         http://www.springframework.org/schema/tx
         http://www.springframework.org/schema/tx/spring-tx.xsd">
+
     <jdbc:embedded-database id="dataSource" type="H2">
-        <jdbc:script location="classpath:META-INF/cql/schema.sql"/>
-        <jdbc:script location="classpath:META-INF/cql/test-data.sql"/>
+        <jdbc:script location="classpath:META-INF/config/schema.sql"/>
+        <jdbc:script location="classpath:META-INF/config/test-data.sql"/>
     </jdbc:embedded-database>
 
     <bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">
         <property name="entityManagerFactory" ref="emf"/>
     </bean>
-    <tx:annotation-driven transaction-manager="transactionManager"/>
+
+    <tx:annotation-driven transaction-manager="transactionManager" />
 
     <bean id="emf" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
-        <property name="dataSource" ref="dataSource"/>
+        <property name="dataSource" ref="dataSource" />
         <property name="jpaVendorAdapter">
-            <bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter"/>
+            <bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter" />
         </property>
-        <property name="packagesToScan" value="com.tow.spring"/>
+        <property name="packagesToScan" value="com.apress.prospring4.ch12"/>
         <property name="jpaProperties">
             <props>
                 <prop key="hibernate.dialect">org.hibernate.dialect.H2Dialect</prop>
@@ -41,7 +43,10 @@
             </props>
         </property>
     </bean>
+
     <context:annotation-config/>
-    <jpa:repositories base-package="com.tow.spring.repository" entity-manager-factory-ref="emf"
+
+    <jpa:repositories base-package="com.apress.prospring4.ch12"
+                      entity-manager-factory-ref="emf"
                       transaction-manager-ref="transactionManager"/>
 </beans>
