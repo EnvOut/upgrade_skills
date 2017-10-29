@@ -6,59 +6,67 @@ import javax.xml.bind.Marshaller;
 import javax.xml.bind.Unmarshaller;
 import java.io.File;
 import java.util.ArrayList;
-import java.util.List;
 
 public class Demo {
-    public static void main(String[] args) {
+    //Initialize the employees list
+    static Employees employees = new Employees();
+    static JAXBContext jaxbContext = null;
 
+    static {
+        employees.setEmployees(new ArrayList<Employee>());
+        //Create two employees
+        Employee emp1 = new Employee();
+        emp1.setId(1);
+        emp1.setFirstName("Lokesh");
+        emp1.setLastName("Gupta");
+        emp1.setIncome(100.0);
 
-        File xml = new File("input.xml");
+        Employee emp2 = new Employee();
+        emp2.setId(2);
+        emp2.setFirstName("John");
+        emp2.setLastName("Mclane");
+        emp2.setIncome(200.0);
+
+        //Add the employees in list
+        employees.getEmployees().add(emp1);
+        employees.getEmployees().add(emp2);
+    }
+
+    static {
         try {
-            unmarshaling(xml);
-
-//            marshaling(xml);
+            jaxbContext = JAXBContext.newInstance(Employees.class);
         } catch (JAXBException e) {
             e.printStackTrace();
         }
-
     }
 
-    public static void unmarshaling(File file) throws JAXBException {
-        JAXBContext jc = JAXBContext.newInstance(SummaryElement.class);
-
-        Unmarshaller unmarshaller = jc.createUnmarshaller();
-
-        SummaryElement sc = (SummaryElement) unmarshaller.unmarshal(file);
-        System.out.println(sc);
-
-//        Marshaller marshaller = jc.createMarshaller();
-//        marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
-//        marshaller.setProperty(Marshaller.JAXB_SCHEMA_LOCATION, "SummaryCart.xsd");
-//        marshaller.marshal(sc, System.out);
-    }
-
-    public static void marshaling(File file) throws JAXBException {
-        List<SummaryElement> list = new ArrayList<>();
-        for (Integer i = 0; i < 10; i++) {
-            SummaryElement el = new SummaryElement();
-            el.setName("Name "+i);
-            el.setType("Type"+i);
-            list.add(el);
+    public static void main(String[] args) {
+        File file = new File("input.xml");
+        try {
+            marshalingExample(file);
+            unmarshalingExample(file);
+        } catch (JAXBException e) {
+            e.printStackTrace();
         }
+    }
 
-        SummaryElement el = new SummaryElement();
-        el.setName("Name ");
-        el.setType("Type");
+    private static void marshalingExample(File file) throws JAXBException {
 
-        JAXBContext jaxbContext = JAXBContext.newInstance(SummaryCart.class);
         Marshaller jaxbMarshaller = jaxbContext.createMarshaller();
 
-        // output pretty printed
         jaxbMarshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
 
-        jaxbMarshaller.marshal(el, file);
-        jaxbMarshaller.marshal(el, System.out);
+        //Marshal the employees list in console
+//        jaxbMarshaller.marshal(employees, System.out);
 
+        //Marshal the employees list in file
+        jaxbMarshaller.marshal(employees, file);
+    }
 
+    private static void unmarshalingExample(File file) throws JAXBException {
+        Unmarshaller unmarshaller = jaxbContext.createUnmarshaller();
+
+        Employees emlps = (Employees) unmarshaller.unmarshal(file);
+        System.out.println(emlps);
     }
 }
