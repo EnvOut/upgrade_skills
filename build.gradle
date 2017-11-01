@@ -6,12 +6,15 @@ apply plugin: 'war'
 sourceCompatibility = 1.8
 
 repositories {
+    mavenLocal()
     mavenCentral()
 }
-
 dependencies {
     testCompile group: 'junit', name: 'junit', version: '4.11'
     testCompile group: 'junit', name: 'junit', version: '4.12'
+    // Servlet-api
+// https://mvnrepository.com/artifact/javax.servlet/javax.servlet-api
+    provided group: 'javax.servlet', name: 'javax.servlet-api', version: '4.0.0'
 
     // https://mvnrepository.com/artifact/org.springframework/spring-context
     compile group: 'org.springframework', name: 'spring-context', version: '4.3.12.RELEASE'
@@ -33,13 +36,9 @@ dependencies {
     compile group: 'org.springframework', name: 'spring-orm', version: '4.3.12.RELEASE'
 // https://mvnrepository.com/artifact/org.springframework/spring-expression
     compile group: 'org.springframework', name: 'spring-expression', version: '4.3.12.RELEASE'
-// https://mvnrepository.com/artifact/javax.servlet/javax.servlet-api
-    provided group: 'javax.servlet', name: 'javax.servlet-api', version: '3.1.0'
-
 
     // SLF4J
     compile group: 'org.slf4j', name: 'slf4j-api', version: '1.7.25'
-
 
     // OXM: VIEW XML
     compile group: 'org.springframework', name: 'spring-oxm', version: '4.3.12.RELEASE'
@@ -63,5 +62,13 @@ dependencies {
     compile group: 'org.hibernate', name: 'hibernate-core', version: '5.2.12.Final'
     compile group: 'org.springframework', name: 'spring-orm', version: '4.3.12.RELEASE'
 
-    compile 'pl.allegro.finance:tradukisto:1.0.0'
+    // Postgres
+//    provided group: 'org.postgresql', name: 'postgresql', version: '42.1.4'
+//    compile group: 'org.postgresql', name: 'postgresql', version: '42.1.4'
+//    provided 'org.postgresql:postgresql:9.4-1205-jdbc42'
+//    provided 'org.postgresql:postgresql:9.4-1205-jdbc42'
+// https://mvnrepository.com/artifact/org.springframework.data/spring-data-commons
+    compile group: 'org.springframework.data', name: 'spring-data-commons', version: '1.13.7.RELEASE'
+
 }
+

@@ -1,19 +1,35 @@
 package com.tow.spring.model;
 
 import javax.persistence.*;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
 import java.io.Serializable;
 import java.sql.Date;
+import java.time.LocalDateTime;
 
+@XmlAccessorType(XmlAccessType.FIELD)
+@Entity
+@Table(name = "CONTACT")
 public class Contact implements Serializable {
-    private Long id;
-    private int version;
-    private String firstName;
-    private String lastName;
-    private Date birthDate;
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ID")
+    private Long id;
+
+    @Version
+    @Column(name = "VERSION")
+    private int version;
+
+    @Column(name = "FIRST_NAME")
+    private String firstName;
+
+    @Column(name = "LAST_NAME")
+    private String lastName;
+
+    @Column(name = "birth_date")
+    private Date birthDate;
+
+
     public Long getId() {
         return id;
     }
@@ -23,8 +39,7 @@ public class Contact implements Serializable {
         return this;
     }
 
-    @Version
-    @Column(name = "VERSION")
+
     public int getVersion() {
         return version;
     }
@@ -34,7 +49,7 @@ public class Contact implements Serializable {
         return this;
     }
 
-    @Column(name = "FIRST_NAME")
+
     public String getFirstName() {
         return firstName;
     }
@@ -44,7 +59,7 @@ public class Contact implements Serializable {
         return this;
     }
 
-    @Column(name = "LAST_NAME")
+
     public String getLastName() {
         return lastName;
     }
@@ -64,6 +79,18 @@ public class Contact implements Serializable {
         sb.append(", birthDate=").append(birthDate);
         sb.append('}');
         return sb.toString();
+    }
+
+    public Contact(String firstName, String lastName) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.birthDate = new Date(1L);
+
+//        this.version=0;
+    }
+
+    public Contact() {
+
     }
 
     public Date getBirthDate() {
