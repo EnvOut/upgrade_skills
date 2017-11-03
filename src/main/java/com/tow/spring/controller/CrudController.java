@@ -1,12 +1,16 @@
 package com.tow.spring.controller;
 
-import com.sun.istack.internal.Nullable;
+import com.google.common.collect.Lists;
 import com.tow.spring.model.Contact;
 import com.tow.spring.repositories.ContactRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.http.MediaType;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+
+import javax.annotation.Nullable;
+import java.util.List;
 
 @RestController
 public class CrudController {
@@ -15,11 +19,17 @@ public class CrudController {
     @Qualifier("contactRepository")
     private ContactRepository contactRepository;
 
-    @GetMapping("all")
-    @ResponseBody
-    public String findAll() {
-        return contactRepository.findAll().toString();
+    @GetMapping(path = "json",
+            produces = MediaType.APPLICATION_JSON_VALUE
+            )
+//            headers = {HttpHeaders.ACCEPT, MediaType.TEXT_HTML_VALUE, MediaType.TEXT_XML_VALUE})
+//    @ResponseBody
+    public List<Contact> findAll() {
+        return Lists.newArrayList(contactRepository.findAll());
     }
+
+
+// @GetMapping(path = {"all", "all.json","all.xml"},consumes = {MediaType.},produces={MediaType.APPLICATION_XML_VALUE},headers = "Accept=application/xml")
 
     @GetMapping("count")
     @ResponseBody
@@ -31,10 +41,10 @@ public class CrudController {
 
     @GetMapping("{id}")
     @ResponseBody
-    public String findAll(
+    public Contact findAll(
             @PathVariable(name = "id")
             @Nullable Long id) {
-        return contactRepository.findOne(id).toString();
+        return contactRepository.findOne(id);
     }
 
     @GetMapping("create")
@@ -63,8 +73,9 @@ public class CrudController {
         }
         return results;
     }
+
     @GetMapping("index2")
-    public String index(){
+    public String index() {
         return "all";
     }
 }

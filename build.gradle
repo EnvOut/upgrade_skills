@@ -14,7 +14,7 @@ dependencies {
     testCompile group: 'junit', name: 'junit', version: '4.12'
     // Servlet-api
 // https://mvnrepository.com/artifact/javax.servlet/javax.servlet-api
-    provided group: 'javax.servlet', name: 'javax.servlet-api', version: '4.0.0'
+    compile group: 'javax.servlet', name: 'javax.servlet-api', version: '4.0.0'
 
     // https://mvnrepository.com/artifact/org.springframework/spring-context
     compile group: 'org.springframework', name: 'spring-context', version: '4.3.12.RELEASE'
@@ -67,8 +67,10 @@ dependencies {
 //    compile group: 'org.postgresql', name: 'postgresql', version: '42.1.4'
 //    provided 'org.postgresql:postgresql:9.4-1205-jdbc42'
 //    provided 'org.postgresql:postgresql:9.4-1205-jdbc42'
-// https://mvnrepository.com/artifact/org.springframework.data/spring-data-commons
-    compile group: 'org.springframework.data', name: 'spring-data-commons', version: '1.13.7.RELEASE'
+    compile group: 'org.springframework.data', name: 'spring-data-commons', version: '1.13.8.RELEASE'
+    compile group: 'org.springframework.data', name: 'spring-data-jpa', version: '1.11.8.RELEASE'
 
+    // Guava
+    compile group: 'com.google.guava', name: 'guava', version: '23.3-jre'
 }
 
