@@ -72,5 +72,8 @@ dependencies {
 
     // Guava
     compile group: 'com.google.guava', name: 'guava', version: '23.3-jre'
+
+    // PDF
+    compile group: 'com.itextpdf', name: 'itextpdf', version: '5.5.12'
 }
 
