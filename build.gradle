@@ -63,17 +63,11 @@ dependencies {
     compile group: 'org.springframework', name: 'spring-orm', version: '4.3.12.RELEASE'
 
     // Postgres
-//    provided group: 'org.postgresql', name: 'postgresql', version: '42.1.4'
-//    compile group: 'org.postgresql', name: 'postgresql', version: '42.1.4'
-//    provided 'org.postgresql:postgresql:9.4-1205-jdbc42'
-//    provided 'org.postgresql:postgresql:9.4-1205-jdbc42'
     compile group: 'org.springframework.data', name: 'spring-data-commons', version: '1.13.8.RELEASE'
     compile group: 'org.springframework.data', name: 'spring-data-jpa', version: '1.11.8.RELEASE'
 
     // Guava
     compile group: 'com.google.guava', name: 'guava', version: '23.3-jre'
 
-    // PDF
-    compile group: 'com.itextpdf', name: 'itextpdf', version: '5.5.12'
 }
 

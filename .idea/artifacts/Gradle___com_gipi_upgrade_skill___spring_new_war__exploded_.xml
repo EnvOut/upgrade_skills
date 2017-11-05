@@ -66,7 +66,6 @@
           <element id="library" level="project" name="Gradle: com.google.errorprone:error_prone_annotations:2.0.18" />
           <element id="library" level="project" name="Gradle: com.google.j2objc:j2objc-annotations:1.1" />
           <element id="library" level="project" name="Gradle: org.codehaus.mojo:animal-sniffer-annotations:1.14" />
-          <element id="file-copy" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.itextpdf/itextpdf/5.5.12/ff7d78e2142e7b0c213b235a6980e34b896896b5/itextpdf-5.5.12.jar" />
         </element>
       </element>
     </root>
