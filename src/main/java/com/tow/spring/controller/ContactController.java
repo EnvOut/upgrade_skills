@@ -1,9 +1,8 @@
 package com.tow.spring.controller;
 
-import com.google.common.collect.Lists;
 import com.tow.spring.model.Contact;
 import com.tow.spring.model.Contacts;
-import com.tow.spring.repositories.ContactRepository;
+import com.tow.spring.repositories.ContactService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.MediaType;
@@ -18,11 +17,11 @@ import java.io.StringWriter;
 import java.util.List;
 
 @RestController
-public class CrudController {
+public class ContactController {
 
     @Autowired
-    @Qualifier("contactRepository")
-    private ContactRepository contactRepository;
+    @Qualifier("contactService")
+    private ContactService contactService;
 
     @Autowired
     @Qualifier("jaxContext")
@@ -33,8 +32,8 @@ public class CrudController {
     )
 //            headers = {HttpHeaders.ACCEPT, MediaType.TEXT_HTML_VALUE, MediaType.TEXT_XML_VALUE})
 //    @ResponseBody
-    public List<Contact> findAll() {
-        return Lists.newArrayList(contactRepository.findAll());
+    public Contacts findAll() {
+        return new Contacts(contactService.findAll());
     }
 
     @GetMapping(path = "xml",
@@ -46,9 +45,9 @@ public class CrudController {
         jaxbMarshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
 
         //Marshal the employees list in console
-        jaxbMarshaller.marshal(new Contacts(Lists.newArrayList(contactRepository.findAll())), System.out);
+        jaxbMarshaller.marshal(new Contacts(contactService.findAll()), System.out);
         StringWriter result = new StringWriter();
-        jaxbMarshaller.marshal(new Contacts(Lists.newArrayList(contactRepository.findAll())), result);
+        jaxbMarshaller.marshal(new Contacts(contactService.findAll()), result);
         return result.toString();
     }
 // @GetMapping(path = {"all", "all.json","all.xml"},consumes = {MediaType.},produces={MediaType.APPLICATION_XML_VALUE},headers = "Accept=application/xml")
@@ -56,9 +55,7 @@ public class CrudController {
     @GetMapping("count")
     @ResponseBody
     public String count() {
-        String all = contactRepository.findAll().toString();
-
-        return new Long(contactRepository.count()).toString();
+        return contactService.count().toString();
     }
 
     @GetMapping("{id}")
@@ -66,7 +63,7 @@ public class CrudController {
     public Contact findAll(
             @PathVariable(name = "id")
             @Nullable Long id) {
-        return contactRepository.findOne(id);
+        return contactService.findById(id);
     }
 
     @GetMapping("create")
@@ -77,7 +74,7 @@ public class CrudController {
         String results = null;
         if (firstName != null || lastName != null) {
             Contact contact = new Contact(firstName, lastName);
-            contactRepository.save(contact);
+            contactService.save(contact);
             results = contact.toString();
         }
         return results;
@@ -88,7 +85,7 @@ public class CrudController {
     public String remove(
             @PathVariable(name = "id", required = false) Long id) {
         String results = "redirect:/all";
-        contactRepository.delete(id);
+        contactService.delete(id);
         return results;
     }
 
