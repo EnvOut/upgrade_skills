@@ -5,7 +5,6 @@ import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import java.io.Serializable;
 import java.sql.Date;
-import java.time.LocalDateTime;
 
 @XmlAccessorType(XmlAccessType.FIELD)
 @Entity
@@ -30,6 +29,18 @@ public class Contact implements Serializable {
     private Date birthDate;
 
 
+    public Contact(String firstName, String lastName) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.birthDate = new Date(1L);
+
+//        this.version=0;
+    }
+
+    public Contact() {
+
+    }
+
     public Long getId() {
         return id;
     }
@@ -38,7 +49,6 @@ public class Contact implements Serializable {
         this.id = id;
         return this;
     }
-
 
     public int getVersion() {
         return version;
@@ -49,7 +59,6 @@ public class Contact implements Serializable {
         return this;
     }
 
-
     public String getFirstName() {
         return firstName;
     }
@@ -58,7 +67,6 @@ public class Contact implements Serializable {
         this.firstName = firstName;
         return this;
     }
-
 
     public String getLastName() {
         return lastName;
@@ -79,18 +87,6 @@ public class Contact implements Serializable {
         sb.append(", birthDate=").append(birthDate);
         sb.append('}');
         return sb.toString();
-    }
-
-    public Contact(String firstName, String lastName) {
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.birthDate = new Date(1L);
-
-//        this.version=0;
-    }
-
-    public Contact() {
-
     }
 
     public Date getBirthDate() {
