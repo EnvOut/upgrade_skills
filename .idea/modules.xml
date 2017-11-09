@@ -2,7 +2,9 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/groovy.iml" filepath="$PROJECT_DIR$/.idea/modules/groovy.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/groovy.iml" filepath="$PROJECT_DIR$/.idea/modules/groovy.iml" group="groovy" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/groovy/groovy_main.iml" filepath="$PROJECT_DIR$/.idea/modules/groovy/groovy_main.iml" group="groovy" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/groovy/groovy_test.iml" filepath="$PROJECT_DIR$/.idea/modules/groovy/groovy_test.iml" group="groovy" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/spring_new.iml" filepath="$PROJECT_DIR$/.idea/modules/spring_new.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/spring_new_main.iml" filepath="$PROJECT_DIR$/.idea/modules/spring_new_main.iml" group="spring_new" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/spring_new_test.iml" filepath="$PROJECT_DIR$/.idea/modules/spring_new_test.iml" group="spring_new" />
