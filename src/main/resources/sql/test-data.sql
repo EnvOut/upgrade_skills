@@ -1,0 +1,12 @@
+INSERT INTO contact (first_name, last_name, birth_date) VALUES ('Chris', 'Schaefer', '1981-05-03');
+INSERT INTO contact (first_name, last_name, birth_date) VALUES ('Scott', 'Tiger', '1990-11-02');
+INSERT INTO contact (first_name, last_name, birth_date) VALUES ('John', 'Smith', '1981-05-03');
+INSERT INTO contact (first_name, last_name, birth_date) VALUES ('Peter', 'Jackson', '1981-05-03');
+INSERT INTO contact (first_name, last_name, birth_date) VALUES ('Jacky', 'Chan', '1981-05-03');
+INSERT INTO contact (first_name, last_name, birth_date) VALUES ('Susan', 'Boyle', '1981-05-03');
+INSERT INTO contact (first_name, last_name, birth_date) VALUES ('Tinner', 'Turner', '1981-05-03');
+INSERT INTO contact (first_name, last_name, birth_date) VALUES ('Lotus', 'Notes', '1981-05-03');
+INSERT INTO contact (first_name, last_name, birth_date) VALUES ('Henry', 'Dickson', '1997-05-03');
+INSERT INTO contact (first_name, last_name, birth_date) VALUES ('Sam', 'Davis', '2001-05-03');
+INSERT INTO contact (first_name, last_name, birth_date) VALUES ('Max', 'Beckam', '2002-05-03');
+INSERT INTO contact (first_name, last_name, birth_date) VALUES ('Paul', 'Simon', '2002-05-03');
