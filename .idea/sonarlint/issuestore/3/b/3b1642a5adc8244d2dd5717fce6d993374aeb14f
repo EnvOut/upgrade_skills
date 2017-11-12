@@ -1,0 +1,4 @@
+
+vsquid:S1488"ZImmediately return this expression instead of assigning it to the temporary variable "mv".(ñ²Â¼8¯³‰“û+
+ksquid:S00116"NRename this field "LOG" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ãùƒ8Ñ®û+
+gsquid:CommentedOutCodeLine"<This block of commented-out lines of code should be removed.(ŸáÚ·8™™øû+

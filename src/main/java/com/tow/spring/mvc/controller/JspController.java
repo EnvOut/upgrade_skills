@@ -31,4 +31,11 @@ public class JspController {
         mv.addObject("persons", persons);
         return mv;
     }
+
+    @GetMapping(path = "/jquery/all")
+    public ModelAndView getJQueryAll() {
+        LOG.debug("getJQueryAll()");
+        ModelAndView mv = new ModelAndView("ajaxPersonsView");
+        return mv;
+    }
 }

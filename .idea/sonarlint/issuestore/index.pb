@@ -17,3 +17,15 @@ b
 2src\main\java\com\tow\spring\mvc\model\Person.java,4\3\43d9309fbdaf83f64218ce1f0aec03af328eb447
 q
 Asrc\main\java\com\tow\spring\mvc\controller\PersonController.java,a\d\ada5d2cdf7af09d1f73dcbba2ae6d68f52e3f9b3
+I
+src\main\webapp\index.jsp,7\f\7f8dede7e19315551e5b04625d4a92e31092c097
+[
++src\main\webapp\WEB-INF\views\usersView.jsp,3\e\3ea89e459fa590fa391c8cd60a1072b6d3330fb2
+n
+>src\main\java\com\tow\spring\mvc\controller\JspController.java,3\b\3b1642a5adc8244d2dd5717fce6d993374aeb14f
+S
+#src\main\webapp\resources\script.js,c\f\cf8d06b282901daa79e062540bbb0efc3b0c0bb6
+a
+1src\main\webapp\WEB-INF\views\ajaxPersonsView.jsp,c\0\c03bf0aedb7807510b5c2e40711c911dd91cf77a
+b
+2src\main\webapp\resources\libs\jquery.dynatable.js,2\6\26ecd3bca7d8093d4d62a4b92e65bf0e5aba5ac9
