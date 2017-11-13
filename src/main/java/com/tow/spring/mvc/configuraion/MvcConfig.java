@@ -20,7 +20,7 @@ public class MvcConfig implements WebMvcConfigurer {
                 "/static/**"
         )
                 .addResourceLocations(
-                        "/resources/**"
+                        "resources/"
 //                        "classpath:/static/"
                 )
                 .setCachePeriod(3600)

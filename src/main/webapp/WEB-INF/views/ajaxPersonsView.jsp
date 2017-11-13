@@ -5,21 +5,32 @@
 <html>
     <head>
         <title>Title</title>
-        <script src="<c:url value="/resources/libs/jquery-3.2.1.min.js"/>"></script>
-        <script src="<c:url value="/resources/libs/jquery.dynatable.js"/>"></script>
-        <link rel="stylesheet" href="<c:url value="/resources/libs/jquery.dynatable.css"/>">
+        <%----%>
+        <link rel="stylesheet"
+              href="<c:url value="/resources/libs/dynamic-table-master/css/dynamic-table.jquery.css"/>">
+        <link rel="stylesheet" href="<c:url value="/resources/libs/dynamic-table-master/css/jquery-ui.css"/>">
 
+        <script src="<c:url value="/resources/libs/dynamic-table-master/js/jquery.js" />"></script>
+        <script src="<c:url value="/resources/libs/dynamic-table-master/js/jquery-ui.js" />"></script>
+        <%--<script src="<c:url value="/resources/libs/dynamic-table-master/js/moment.js" />"></script>--%>
+        <%--<script src="<c:url value="/resources/libs/dynamic-table-master/js/dynamic-table.jquery.js" />"></script>--%>
+        <%--<script src="<c:url value="/resources/libs/dynamic-table-master/js/dynamic-table-editor.jquery.js" />"></script>--%>
         <script src="<c:url value="/resources/script.js" />"></script>
+
+
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/tabulator/3.3.1/css/tabulator.min.css" rel="stylesheet">
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/tabulator/3.3.1/js/tabulator.min.js"></script>
     </head>
     <body>
-        ajax2 reloaded
+        <div id="sample-grid">
 
-        <table id="my-final-table">
-            <thead>
-                <th>ID</th>
-                <th>First name</th>
-                <th>Last name</th>
-            </thead>
-        </table>
+        </div>
+
+        <div id="selected-data">&nbsp;</div>
+        <div id="save-data">&nbsp;</div>
+
+        <div>
+            <button id="clear-all-button">Clear All Filters</button>
+        </div>
     </body>
 </html>
