@@ -1,7 +1,6 @@
-package com.tow.spring;
+package com.tow.spring.websocket;
 
-import com.tow.spring.config.ApplicationConfig;
-import org.springframework.context.ApplicationContext;
+import com.tow.spring.websocket.config.ApplicationConfig;
 import org.springframework.web.WebApplicationInitializer;
 import org.springframework.web.context.ContextLoaderListener;
 import org.springframework.web.context.support.AnnotationConfigWebApplicationContext;

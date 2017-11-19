@@ -28,6 +28,7 @@
     <orderEntry type="library" name="Gradle: org.springframework:spring-webmvc:5.0.1.RELEASE" level="project" />
     <orderEntry type="library" name="Gradle: org.springframework:spring-messaging:5.0.1.RELEASE" level="project" />
     <orderEntry type="library" name="Gradle: commons-fileupload:commons-fileupload:1.3.3" level="project" />
+    <orderEntry type="library" name="Gradle: javax.servlet:jstl:1.2" level="project" />
     <orderEntry type="library" name="Gradle: org.springframework:spring-aop:5.0.1.RELEASE" level="project" />
     <orderEntry type="library" name="Gradle: org.springframework:spring-beans:5.0.1.RELEASE" level="project" />
     <orderEntry type="library" name="Gradle: org.springframework:spring-core:5.0.1.RELEASE" level="project" />
@@ -35,5 +36,7 @@
     <orderEntry type="library" name="Gradle: org.springframework:spring-web:5.0.1.RELEASE" level="project" />
     <orderEntry type="library" name="Gradle: commons-io:commons-io:2.2" level="project" />
     <orderEntry type="library" name="Gradle: org.springframework:spring-jcl:5.0.1.RELEASE" level="project" />
+    <orderEntry type="library" name="sockjs" level="application" />
+    <orderEntry type="library" name="stomp" level="application" />
   </component>
 </module>
