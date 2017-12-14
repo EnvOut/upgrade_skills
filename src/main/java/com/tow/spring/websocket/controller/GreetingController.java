@@ -10,8 +10,10 @@ import org.springframework.stereotype.Controller;
 public class GreetingController {
     @MessageMapping("/hello")
     @SendTo("/topic/greetings")
-    public Greeting greeting(HelloMessage name) throws Exception {
-        Thread.sleep(1000); // simulated delay
-        return new Greeting("Hello, " + name.getName() + "!");
+    public Greeting greeting(String name) throws Exception {
+//        Thread.sleep(1000); // simulated delay
+        System.out.println(name);
+//        return new Greeting("Hello, " + name.getName() + "!");
+        return new Greeting("Hello, " + name+ "!");
     }
 }

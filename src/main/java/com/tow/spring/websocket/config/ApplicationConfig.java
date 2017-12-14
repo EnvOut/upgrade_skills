@@ -7,7 +7,8 @@ import org.springframework.context.annotation.Import;
 @Configuration
 @Import({
         WebSocketConfig.class,
-        MvcConfig.class})
+        MvcConfig.class,
+        SeriolizationConfig.class})
 @ComponentScan("com.tow.spring.websocket")
 public class ApplicationConfig {
 }
