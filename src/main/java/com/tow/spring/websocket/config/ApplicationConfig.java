@@ -8,4 +8,5 @@ import org.springframework.context.annotation.Import;
 @Import({MvcConfig.class})
 @ComponentScan("com.tow.spring.websocket")
 public class ApplicationConfig {
+
 }
